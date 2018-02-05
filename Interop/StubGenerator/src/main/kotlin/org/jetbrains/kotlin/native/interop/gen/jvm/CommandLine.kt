@@ -18,6 +18,8 @@ package org.jetbrains.kotlin.native.interop.tool
 
 import org.jetbrains.kotlin.cli.common.arguments.*
 
+// TODO: unify camel and snake cases.
+// Possible solution is to accept both cases
 open class CommonInteropArguments : CommonToolArguments() {
     @Argument(value = "-flavor", valueDescription = "<flavor>", description = "One of: jvm, native or wasm")
     var flavor: String? = null
@@ -39,6 +41,9 @@ open class CommonInteropArguments : CommonToolArguments() {
 
     @Argument(value = "-libraryPath", valueDescription = "<dir>", description = "add a library search path") 
     var libraryPath: Array<String> = arrayOf()
+
+    @Argument(value = "-temporaryFilesDir", valueDescription = "<dir>", description = "Save temporary files to the given directory")
+    var temporaryFilesDir: String? = null
 }
 
 class CInteropArguments : CommonInteropArguments() {
@@ -73,9 +78,6 @@ class CInteropArguments : CommonInteropArguments() {
     var linker: String? = null
     @Argument(value = "-cstubsname", valueDescription = "<name>", description = "provide a name for the generated c stubs file") 
     var cstubsname: String? = null
-
-    @Argument(value = "-keepcstubs", description = "preserve the generated c stubs for inspection") 
-    var keepcstubs: Boolean = false
 }
 
 const val HEADER_FILTER_ADDITIONAL_SEARCH_PREFIX = "-headerFilterAdditionalSearchPrefix"
