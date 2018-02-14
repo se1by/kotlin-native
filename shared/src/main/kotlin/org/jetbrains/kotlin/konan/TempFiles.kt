@@ -25,8 +25,6 @@ import org.jetbrains.kotlin.konan.file.*
 class TempFiles(outputPath: String, pathToTemporaryDir: String? = null) {
     private val outputName = File(outputPath).name
 
-    // TODO: it's not a temporary file
-    val cAdapterHeader      by lazy { File("${outputPath}_api.h") }
     val nativeBinaryFile    by lazy { File(dir,"${outputName}.kt.bc") }
     val cAdapterDef         by lazy { File(dir,"${outputName}_symbols.def") }
     val cAdapterCpp         by lazy { File(dir, "api.cpp") }
